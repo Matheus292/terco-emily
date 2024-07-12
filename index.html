@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalizador de Terço</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Personalize seu Terço</h1>
+        <form id="rosary-form">
+            <div class="form-group">
+                <label for="rosary-type">Tipo de Terço:</label>
+                <select id="rosary-type" name="rosary-type" class="form-control">
+                    <option value="custom">Terço Personalizado</option>
+                </select>
+            </div>
+            <div id="custom-options">
+                <div class="form-group" style="display: none;">
+                    <label for="crucifix">Escolha o crucifixo:</label>
+                    <select id="crucifix" name="crucifix" class="form-control">
+                        <option value="simple">Simples</option>
+                        <option value="decorated">Decorado</option>
+                        <option value="silver">Prata</option>
+                    </select>
+                </div>
+                <div class="form-group" style="display: none;">
+                    <label for="cord">Escolha o cordão:</label>
+                    <select id="cord" name="cord" class="form-control">
+                        <option value="nylon">Nylon</option>
+                        <option value="cotton">Algodão</option>
+                        <option value="leather">Couro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="cordas-grandes">Escolha a cor das cordas Grandes:</label>
+                    <input type="color" id="cordas-grandes" name="cordas-grandes" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="decade1">Escolha a cor da primeira dezena:</label>
+                    <input type="color" id="decade1" name="decade1" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="decade2">Escolha a cor da segunda dezena:</label>
+                    <input type="color" id="decade2" name="decade2" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="decade3">Escolha a cor da terceira dezena:</label>
+                    <input type="color" id="decade3" name="decade3" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="decade4">Escolha a cor da quarta dezena:</label>
+                    <input type="color" id="decade4" name="decade4" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="decade5">Escolha a cor da quinta dezena:</label>
+                    <input type="color" id="decade5" name="decade5" class="form-control">
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary btn-block" onclick="generateRosary()">Personalizar Terço</button>
+        </form>
+        <div id="rosary-preview" class="mt-4">
+            <h2 class="text-center">Pré-visualização do terço</h2>
+            <div class="d-flex justify-content-center">
+                <canvas id="rosary-canvas" width="300%" height="600" class="border"></canvas>
+            </div>
+        </div>
+        <br><br>
+        <!-- <button id="whatsapp-button" class="btn btn-success btn-block mt-3" style="display: none;" onclick="sendToWhatsApp()">Enviar pelo WhatsApp</button> -->
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
