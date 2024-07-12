@@ -34,14 +34,15 @@ function generateCustomRosary() {
     let yPrimeiraDezena;
 
     const colors = [
-        document.getElementById('decade1').value,
-        document.getElementById('decade2').value,
         document.getElementById('decade3').value,
         document.getElementById('decade4').value,
-        document.getElementById('decade5').value
+        document.getElementById('decade5').value,
+        document.getElementById('decade1').value,
+        document.getElementById('decade2').value,
     ];
 
     const cordaGrande = document.getElementById('cordas-grandes').value;
+    const aveMaria = document.getElementById('ave-maria').value;
 
     const canvas = document.getElementById('rosary-canvas');
     const ctx = canvas.getContext('2d');
@@ -53,8 +54,8 @@ function generateCustomRosary() {
     const beadRadius = 8; // Tamanho das contas
     const bigBeadRadius = 12; // Raio da bola maior
     const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2.5;
-    const gap = 40; // Espaçamento entre contas
+    const centerY = canvas.height / 2.85;
+    const gap = 20; // Espaçamento entre contas
 
     // Função para desenhar uma conta
     function drawBead(x, y, radius, color) {
@@ -67,35 +68,78 @@ function generateCustomRosary() {
         ctx.closePath();
     }
 
+    function drawImage(img, x, y, width, height) {
+        img.onload = function() {
+            ctx.shadowBlur = 0; // Limpar sombras para o crucifixo
+            ctx.drawImage(img, x - width / 2, y - height / 2, width, height);
+        };
+
+        
+    }
+
     // Desenhar as cinco dezenas
-    let angle = -11;
+    let angle = -8.45;
+    let x1 = 0;
+    let y1 = 0;
     for (let decade = 0; decade < 5; decade++) {
         const color = colors[decade];
+
+
+
         for (let i = 0; i < 10; i++) {
             const x = centerX + Math.cos(angle) * (centerX - gap);
             const y = centerY + Math.sin(angle) * (centerY - gap);
             drawBead(x, y, beadRadius, color);
             angle += (Math.PI / 27); // Incrementar o ângulo
-        }
+        }       
 
         // Desenhar a bola maior para o início do mistério
         const x = centerX + Math.cos(angle) * (centerX - gap);
         const y = centerY + Math.sin(angle) * (centerY - gap);
-        drawBead(x, y, bigBeadRadius, cordaGrande);
-        angle += (Math.PI / 27); // Incrementar o ângulo
+
+        if(decade == 2)
+        {
+            x1 = x;
+            y1 = y; 
+            const medalImage = new Image();
+            medalImage.src = `images/sao_jose.png`;
+           // drawBead(x, y, bigBeadRadius, 'white');
+            drawImage(medalImage, x, y+18, 30, 40);
+            angle += (Math.PI / 27); // Incrementar o ângulo
+
+        }
+        else{
+            drawBead(x, y, bigBeadRadius, cordaGrande);
+            angle += (Math.PI / 27); // Incrementar o ângulo
+        }
+       
+
+        
     }
 
+    y1 += 52;
+    drawBead(x1, y1, bigBeadRadius, cordaGrande);
+    y1 += 22;
+    drawBead(x1, y1, beadRadius, aveMaria);
+    y1 += 18;
+    drawBead(x1, y1, beadRadius, aveMaria);
+    y1 += 18;
+    drawBead(x1, y1, beadRadius, aveMaria);
+    y1 += 22;
+    drawBead(x1, y1, bigBeadRadius, cordaGrande);
+   
+   
     // Carregar e desenhar o crucifixo
     const crucifixImage = new Image();
-    crucifixImage.src = `images/crucifix/${crucifix}.png`;
+    crucifixImage.src = `images/simple.png`;
     
     crucifixImage.onload = function() {
         ctx.shadowBlur = 0; // Limpar sombras para o crucifixo
-        ctx.drawImage(crucifixImage, centerX - 50, centerY + centerY / 2, 100, 100);
+        ctx.drawImage(crucifixImage, centerX - 37, centerY + centerY + 242 / 2, 80, 80);
     };
 
     // Exibir o botão de enviar pelo WhatsApp
-    document.getElementById('whatsapp-button').style.display = 'block';
+ //   document.getElementById('whatsapp-button').style.display = 'block';
 }
 
 function generateRosaryPrayers() {
