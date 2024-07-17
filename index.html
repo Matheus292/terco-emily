@@ -21,7 +21,7 @@
 
     <!--SCRIPTS -->
     <script src="script.js" defer></script>
- 
+   
 </head>
 <body>
 
@@ -44,18 +44,26 @@
             </div>
             <div id="qbox-container">
                <form class="needs-validation" id="form-wrapper" method="post" name="form-wrapper" novalidate="">
+                  
                   <div id="steps-container">
+
+                    <!-- ETAPA DE PEGAR AS INFORMACOES DO USUARIO -->                  
                     <div class="step">
+                     
                         <h1>Dados de Identificação</h1>
                         <div class="mt-4">
                            <label class="form-label">Nome:</label> 
-                           <input class="form-control" id="full_name" name="full_name" type="text">
+                           <input class="form-control" id="full_name" name="full_name" placeholder="Seu Nome" type="text">
                         </div>
                         <div class="mt-4">
                             <label class="form-label">Telefone:</label> 
-                            <input class="form-control" id="phone" name="phone" type="text">
-                         </div>
+                            <input class="form-control" id="phone" name="phone" placeholder="(xx) xxxxx-xxxx" type="text">
+
+
+                        </div>
                      </div>
+                     <!-- FIM ETAPA PEGAR AS INFORMACOES DO USUARIO -->
+ 
                      <div class="step">
                         <h4>Lorem ipsum, dolor sit amet consectetur adipisicing.</h4>
                         <div class="form-check ps-0 q-box">
@@ -241,6 +249,10 @@
          </div>
         </div>
     </div>
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js" defer></script>
     <script src="main.js"></script> 
+
 </body>
 </html>
