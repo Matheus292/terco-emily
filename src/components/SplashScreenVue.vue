@@ -2,20 +2,14 @@
     <div class="splash-screen">
       <div class="background-animation"></div>
       <div class="logo-container">
-        <img src="../assets/salve_maria.png" alt="Game Logo" class="logo" />
-        <img src="../assets/butterfly1.gif" alt="Butterfly 1" class="butterfly butterfly-1" />
-        <img src="../assets/butterfly2.gif" alt="Butterfly 2" class="butterfly butterfly-2" />
+        <img src="../assets/salve_maria.png" alt="Salve Maria" class="logo" />
       </div>
       <div class="text-animation">
         {{ displayedText }}<span class="cursor"></span>
       </div>
       <div v-if="progressVisible" class="progress-bar" ref="progressBar">
         <div class="progress-container">
-          <div class="progress" :style="{ width: progressWidth + '%' }">
-            <div class="roses-container">
-              <img v-for="n in numberOfRoses" :key="n" src="../assets/rose.png" class="rose" :style="{ left: calculateRosePosition(n) + 'px' }" />
-            </div>
-          </div>
+          <div class="progress" :style="{ width: progressWidth + '%' }"></div>
         </div>
       </div>
       <button v-if="!progressVisible" class="next-btn start" @click="startGame">Iniciar</button>
@@ -32,7 +26,6 @@
         displayedText: "",
         typingSpeed: 70,
         progressWidth: 0,
-        numberOfRoses: 10,
         cursorVisible: true
       };
     },
@@ -58,15 +51,6 @@
       },
       startGame() {
         alert('Ainda serei implementado :)');
-      },
-      calculateRosePosition(index) {
-        const progressBar = this.$refs.progressBar;
-        if (!progressBar) return 0;
-  
-        const progressBarWidth = progressBar.offsetWidth;
-        const roseWidth = 20;
-        const spacing = (progressBarWidth - (this.numberOfRoses * roseWidth)) / (this.numberOfRoses + 1);
-        return (index * (spacing + roseWidth)) + (spacing / 2) - (roseWidth / 2);
       },
       blinkCursor() {
         setInterval(() => {
@@ -132,26 +116,7 @@
     width: 100%;
     height: auto;
   }
-  
-  .butterfly {
-    position: absolute;
-    width: 70px; 
-    height: auto;
-    opacity: 1;
-  }
-  
-  .butterfly-1 {
-    left: -20px; 
-    top: 50%; 
-    transform: translateY(-50%); 
-  }
-  
-  .butterfly-2 {
-    right: -20px; 
-    top: 50%; 
-    transform: translateY(-50%);
-  }
-  
+ 
   .text-animation {
     font-size: 1.2rem;
     color: #ffffff;
@@ -203,22 +168,7 @@
     transition: width 0.5s ease;
   }
   
-  .roses-container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-  }
-  
-  .rose {
-    position: absolute;
-    width: 20px;
-    height: auto;
-    transform: translateY(40%);
-  }
-  
+
   .start {
     margin-top: 20px;
     width: 50%;
@@ -245,22 +195,6 @@
       margin-top: -20px;
     }
   
-    .rose {
-      width: 15px;
-    }
-  
-    .butterfly {
-      width: 60px;
-    }
-  
-    .butterfly-1 {
-      left: 80px; 
-    }
-  
-    .butterfly-2 {
-      right: 80px; 
-    }
-
     .start{
         margin-top: 5px;
     }
